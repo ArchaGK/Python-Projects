@@ -4,6 +4,9 @@ import json
 import pandas as pd
 from pandas import ExcelWriter
 from pandas import ExcelFile
+from bson.objectid import ObjectId
+import sys
+
 
 client = MongoClient()
 db = client.user2
@@ -48,6 +51,13 @@ for k in range(0,(len(sr_no))):
 
    }
   userinfo.insert_one(post_data)
+
+
+############### searching the data from mongodb ########
+
+fname = userinfo.find({"Sr_no":3},{"Sr_no":True,"Sname":True})
+for emp in fname:
+    print (emp)
 
 
 
